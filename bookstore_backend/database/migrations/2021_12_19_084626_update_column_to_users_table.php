@@ -23,7 +23,7 @@ class UpdateColumnToUsersTable extends Migration
 
         Schema::table('users', function (Blueprint $table) {
             $table->string('phone', 11)->unique()->nullable(false);
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->string('display_name');
             $table->softDeletes();
         });
