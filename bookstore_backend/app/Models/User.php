@@ -13,6 +13,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
+    const PWD_DEAFULT = '$2y$10$ybDcemBcmCmlwBxLGWYTlOOR1sswdVM6me2pnjjWqebVz1V6ORyVC';
+
     /**
      * The attributes that are mass assignable.
      *
