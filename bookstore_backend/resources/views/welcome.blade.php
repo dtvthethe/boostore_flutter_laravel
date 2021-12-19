@@ -36,7 +36,7 @@
         <h3>BooStore: API</h3>
         <p>Backend Bookstore #Laravel #SQLite #Sanctum</p>
         <ul>
-            <li><a href="#">API docs</a></li>
+            <li><a href="/api/docs">API docs</a></li>
             <li><a href="/log">Logs</a></li>
             <li><a href="">About</a></li>
         </ul>
