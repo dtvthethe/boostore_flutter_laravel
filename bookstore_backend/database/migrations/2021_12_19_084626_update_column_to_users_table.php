@@ -25,6 +25,7 @@ class UpdateColumnToUsersTable extends Migration
             $table->string('phone', 11)->unique()->nullable(false);
             $table->string('avatar');
             $table->string('display_name');
+            $table->softDeletes();
         });
     }
 
@@ -39,6 +40,7 @@ class UpdateColumnToUsersTable extends Migration
             $table->dropColumn([
                 'phone',
                 'display_name',
+                'deleted_at',
                 'avatar',
             ]);
         });

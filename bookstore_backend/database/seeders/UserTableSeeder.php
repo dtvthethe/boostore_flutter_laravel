@@ -2,12 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
 {
-    const APPEND_NUMBER_USER = 8;
+    const APPEND_NUMBER_USER = 2;
+    const ADMIN_ID = 1;
     const PWD_DEAFULT = '$2y$10$ybDcemBcmCmlwBxLGWYTlOOR1sswdVM6me2pnjjWqebVz1V6ORyVC';
 
     /**
@@ -44,5 +47,24 @@ class UserTableSeeder extends Seeder
         });
 
         User::factory()->count(self::APPEND_NUMBER_USER)->create();
+
+        $roles = Role::where('id', Role::ADMIN)->get();
+
+        $roles->each(function(Role $role) {
+            $role->permissions()->sync(Permission::VIEW_STOCK_QUANTIRY);
+        });
+
+        $users = User::all();
+
+        // Set rol and permission
+        // Admin role: has permission to view product stock quantiry.
+        // Other role: can't view product stock quantiry.
+        $users->each(function(User $user) {
+            if ($user->id === self::ADMIN_ID) {
+                $user->roles()->sync(Role::ADMIN);
+            } else {
+                $user->roles()->sync(Role::GUEST);
+            }
+        });
     }
 }
