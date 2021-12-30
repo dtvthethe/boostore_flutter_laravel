@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bookstore/module/signin/signin_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.yellow,
       ),
-      home: null,
+      home: SigninPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
