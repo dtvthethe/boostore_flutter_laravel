@@ -3,9 +3,9 @@ import 'package:bookstore/shared/style/btn_style.dart';
 import 'package:flutter/material.dart';
 
 class NormalButton extends StatelessWidget {
-  late VoidCallback onPress;
+  late VoidCallback? onPress;
 
-  NormalButton({required this.onPress});
+  NormalButton({this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,8 @@ class NormalButton extends StatelessWidget {
           'Sign In',
           style: BtnStyle.normal(),
         ),
-        onPressed: onPress, // TODO: vi sao ko dung () =>
+        onPressed:
+            onPress, // TODO: vi sao ko dung () => vi day la khai bao ko phai define de chay event
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4),
