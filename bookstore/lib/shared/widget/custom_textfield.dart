@@ -20,7 +20,7 @@ class CustomTextField {
         ),
         errorText: error,
       ),
-      keyboardType: TextInputType.phone,
+      keyboardType: TextInputType.number,
       cursorColor: Color(Colors.black.value),
       controller: txtController,
       onChanged: (value) {
@@ -50,9 +50,9 @@ class CustomTextField {
         errorText: error,
       ),
       cursorColor: Color(Colors.black.value),
-      keyboardType: TextInputType.text,
       obscureText: true,
       controller: txtController,
+      keyboardType: TextInputType.text,
       onChanged: (value) {
         if (onChange != null) {
           onChange(value);

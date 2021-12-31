@@ -101,7 +101,9 @@ class LoginWidget extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(top: 20),
                 child: NormalLink(
-                  tap: () {},
+                  tap: () {
+                    Navigator.pushNamed(context, '/sign-up');
+                  },
                   title: 'Đăng kí tài khoản',
                 ),
               ),
