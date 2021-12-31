@@ -1,3 +1,4 @@
+import 'package:bookstore/module/signup/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookstore/module/signin/signin_page.dart';
 
@@ -15,8 +16,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),
-      home: SigninPage(),
       debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: <String, WidgetBuilder>{
+        '/': (context) => SigninPage(),
+        '/sign-up': (context) => SignUpPage(),
+      },
     );
   }
 }

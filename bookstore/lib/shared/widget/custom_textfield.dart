@@ -20,7 +20,7 @@ class CustomTextField {
         ),
         errorText: error,
       ),
-      keyboardType: TextInputType.phone,
+      keyboardType: TextInputType.number,
       cursorColor: Color(Colors.black.value),
       controller: txtController,
       onChanged: (value) {
@@ -50,8 +50,37 @@ class CustomTextField {
         errorText: error,
       ),
       cursorColor: Color(Colors.black.value),
-      keyboardType: TextInputType.text,
       obscureText: true,
+      controller: txtController,
+      keyboardType: TextInputType.text,
+      onChanged: (value) {
+        if (onChange != null) {
+          onChange(value);
+        }
+      },
+    );
+  }
+
+  static TextField normalTextBox(
+    TextEditingController txtController, {
+    void onChange<T>(T value)?,
+    String? error,
+  }) {
+    return TextField(
+      decoration: InputDecoration(
+        icon: Icon(
+          Icons.person,
+          color: AppColor.blue,
+        ),
+        hintText: 'Input name',
+        labelText: 'Name',
+        labelStyle: TextStyle(
+          color: AppColor.blue,
+        ),
+        errorText: error,
+      ),
+      keyboardType: TextInputType.text,
+      cursorColor: Color(Colors.black.value),
       controller: txtController,
       onChanged: (value) {
         if (onChange != null) {
