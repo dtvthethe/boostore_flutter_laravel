@@ -79,6 +79,9 @@ class SignInBloc extends BaseBloc {
 
   @override
   void dispose() {
+    _txtPhoneSubject.close();
+    _txtPasswordSubject.close();
+    _btnSignInSubject.close();
     super.dispose();
   }
 

@@ -60,4 +60,33 @@ class CustomTextField {
       },
     );
   }
+
+  static TextField normalTextBox(
+    TextEditingController txtController, {
+    void onChange<T>(T value)?,
+    String? error,
+  }) {
+    return TextField(
+      decoration: InputDecoration(
+        icon: Icon(
+          Icons.person,
+          color: AppColor.blue,
+        ),
+        hintText: 'Input name',
+        labelText: 'Name',
+        labelStyle: TextStyle(
+          color: AppColor.blue,
+        ),
+        errorText: error,
+      ),
+      keyboardType: TextInputType.text,
+      cursorColor: Color(Colors.black.value),
+      controller: txtController,
+      onChanged: (value) {
+        if (onChange != null) {
+          onChange(value);
+        }
+      },
+    );
+  }
 }
