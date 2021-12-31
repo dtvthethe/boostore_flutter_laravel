@@ -47,6 +47,8 @@ class UserController extends Controller
             'data' => [
                 'access_token' => $token,
                 'token_type' => 'Bearer',
+                'display_name' => $user->display_name,
+                'avatar' => $user->avatar,
             ],
             'messages' => 'Create successs.',
         ]);

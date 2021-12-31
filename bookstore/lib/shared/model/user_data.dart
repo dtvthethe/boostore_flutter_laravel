@@ -6,8 +6,8 @@ class UserData {
   UserData({required this.displayName, required this.token, this.avatar});
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
-        displayName: json['displayName'],
-        token: json['token'],
-        avatar: json['avatar'],
+        displayName: json['display_name'].toString(),
+        token: json['access_token'].toString(),
+        avatar: json['avatar'].toString(),
       );
 }
