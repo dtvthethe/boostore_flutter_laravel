@@ -21,7 +21,7 @@ class PageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (bloc.isEmpty && di.isEmpty) {
+    if (di.isEmpty) {
       print('block and di are Empty');
       return Scaffold(
         appBar: AppBar(
@@ -34,7 +34,7 @@ class PageContainer extends StatelessWidget {
       print('block and di apply');
       return MultiProvider(
         providers: [
-          ...bloc,
+          // ...bloc,
           ...di,
         ],
         child: Scaffold(
@@ -47,4 +47,33 @@ class PageContainer extends StatelessWidget {
       );
     }
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   if (bloc.isEmpty && di.isEmpty) {
+  //     print('block and di are Empty');
+  //     return Scaffold(
+  //       appBar: AppBar(
+  //         title: Text(title),
+  //         // actions: actions,
+  //       ),
+  //       body: child,
+  //     );
+  //   } else {
+  //     print('block and di apply');
+  //     return MultiProvider(
+  //       providers: [
+  //         ...bloc,
+  //         ...di,
+  //       ],
+  //       child: Scaffold(
+  //         appBar: AppBar(
+  //           title: Text(title),
+  //           // actions: actions,
+  //         ),
+  //         body: child,
+  //       ),
+  //     );
+  //   }
+  // }
 }
