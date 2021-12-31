@@ -2,7 +2,11 @@ import 'package:bookstore/shared/app_color.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField {
-  static TextField phoneTextBox(TextEditingController txtController) {
+  static TextField phoneTextBox(
+    TextEditingController txtController, {
+    void onChange<T>(T value)?,
+    String? error,
+  }) {
     return TextField(
       decoration: InputDecoration(
         icon: Icon(
@@ -14,14 +18,24 @@ class CustomTextField {
         labelStyle: TextStyle(
           color: AppColor.blue,
         ),
+        errorText: error,
       ),
       keyboardType: TextInputType.phone,
       cursorColor: Color(Colors.black.value),
       controller: txtController,
+      onChanged: (value) {
+        if (onChange != null) {
+          onChange(value);
+        }
+      },
     );
   }
 
-  static TextField passswordTextBox(TextEditingController txtController) {
+  static TextField passswordTextBox(
+    TextEditingController txtController, {
+    void onChange<T>(T value)?,
+    String? error,
+  }) {
     return TextField(
       decoration: InputDecoration(
         icon: Icon(
@@ -33,11 +47,17 @@ class CustomTextField {
         labelStyle: TextStyle(
           color: AppColor.blue,
         ),
+        errorText: error,
       ),
       cursorColor: Color(Colors.black.value),
       keyboardType: TextInputType.text,
       obscureText: true,
       controller: txtController,
+      onChanged: (value) {
+        if (onChange != null) {
+          onChange(value);
+        }
+      },
     );
   }
 }

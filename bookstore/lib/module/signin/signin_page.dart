@@ -38,37 +38,75 @@ class LoginWidget extends StatelessWidget {
           SignInBloc(userRepo: Provider.of<UserRepo>(context)),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              child: CustomTextField.phoneTextBox(txtPhoneController),
-              margin: EdgeInsets.only(bottom: 16),
-            ),
-            Container(
-              child: CustomTextField.passswordTextBox(txtPassController),
-              margin: EdgeInsets.only(bottom: 30),
-            ),
-            Container(
-              child: Consumer<SignInBloc>(
-                builder: (context, value, child) => NormalButton(
-                  onPress: () {
-                    value.eventSink.add(SignInEvent(
-                      phone: txtPhoneController.text,
-                      password: txtPassController.text,
-                    ));
-                  },
+        child: Consumer<SignInBloc>(
+          builder: (context, signInBloc, child) => Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                child: StreamProvider<String?>.value(
+                  value: signInBloc.txtPhoneSubjectStream,
+                  initialData: null,
+                  builder: (context, child) => Consumer<String?>(
+                    builder: (context, msg, child) =>
+                        CustomTextField.phoneTextBox(
+                      txtPhoneController,
+                      onChange: <String>(value) {
+                        // Vi txtPhoneSubjectSink laf Stream<String> nen add vao String se xu li dc
+                        signInBloc.txtPhoneSubjectSink.add(value.toString());
+                      },
+                      error: msg,
+                    ),
+                  ),
+                ),
+                margin: EdgeInsets.only(bottom: 16),
+              ),
+              Container(
+                child: StreamProvider<String?>.value(
+                  value: signInBloc.txtPasswordSubjectStream,
+                  initialData: null,
+                  builder: (context, child) => Consumer<String?>(
+                    builder: (context, msg, child) =>
+                        CustomTextField.passswordTextBox(
+                      txtPassController,
+                      onChange: <String>(value) {
+                        // Vi txtPhoneSubjectSink laf Stream<String> nen add vao String se xu li dc
+                        signInBloc.txtPasswordSubjectSink.add(value.toString());
+                      },
+                      error: msg,
+                    ),
+                  ),
+                ),
+                margin: EdgeInsets.only(bottom: 30),
+              ),
+              Container(
+                child: StreamProvider.value(
+                  value: signInBloc.btnSignInSubjectStream,
+                  initialData: false,
+                  builder: (context, child) => Consumer<bool>(
+                    builder: (context, value, child) => NormalButton(
+                      onPress: value
+                          ? () {
+                              signInBloc.eventSink.add(
+                                SignInEvent(
+                                  phone: txtPhoneController.text,
+                                  password: txtPassController.text,
+                                ),
+                              );
+                            }
+                          : null,
+                    ),
+                  ),
                 ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 20),
-              child: NormalLink(
-                tap: () {},
-                title: 'Đăng kí tài khoản',
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                child: NormalLink(
+                  tap: () {},
+                  title: 'Đăng kí tài khoản',
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
