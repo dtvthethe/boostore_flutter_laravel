@@ -86,14 +86,22 @@ class SignInBloc extends BaseBloc {
   }
 
   _signIn(SignInEvent event) {
-    _userRepo.signIn(event.phone, event.password).then(
-      (UserData user) {
-        print(user.displayName);
-        print(user.token);
-      },
-      onError: (e) {
-        print(e);
-      },
-    );
+    btnSignInSubjectSink.add(false);
+    loaddingSink.add(true);
+
+    Future.delayed(Duration(seconds: 6), () {
+      _userRepo.signIn(event.phone, event.password).then(
+        (UserData user) {
+          print(user.displayName);
+          print(user.token);
+        },
+        onError: (e) {
+          print(e);
+        },
+      );
+
+      btnSignInSubjectSink.add(true);
+      loaddingSink.add(false);
+    });
   }
 }

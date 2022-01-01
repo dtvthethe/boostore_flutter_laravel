@@ -8,6 +8,7 @@ abstract class BaseBloc {
   // TODO: cai nay dung de lam gi
   StreamController<BaseEvent> _baseProcessController =
       StreamController<BaseEvent>();
+  // Show loadding animation
   StreamController<bool> _loaddingStreamController = StreamController<bool>();
 
   Sink<BaseEvent> get eventSink => _baseEventController.sink;
