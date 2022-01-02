@@ -1,3 +1,4 @@
+import 'package:bookstore/module/home/home_page.dart';
 import 'package:bookstore/module/signup/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookstore/module/signin/signin_page.dart';
@@ -17,9 +18,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.yellow,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/sign-in',
       routes: <String, WidgetBuilder>{
-        '/': (context) => SigninPage(),
+        '/home': (context) => HomePage(), // ko dc set la `/`
+        '/sign-in': (context) => SigninPage(),
         '/sign-up': (context) => SignUpPage(),
       },
     );
