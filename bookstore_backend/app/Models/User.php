@@ -62,4 +62,8 @@ class User extends Authenticatable
 
         return $permissions->contains('name', $permissionName);
     }
+
+    public function orders() {
+        return $this->hasMany(Order::class);
+    }
 }
