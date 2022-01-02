@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.yellow,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/sign-in',
+      initialRoute: '/home',
       routes: <String, WidgetBuilder>{
         '/home': (context) => HomePage(), // ko dc set la `/`
         '/sign-in': (context) => SigninPage(),

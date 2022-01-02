@@ -26,7 +26,7 @@ class PageContainer extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           title: Text(title),
-          // actions: actions,
+          actions: actions,
         ),
         body: child,
       );
@@ -40,7 +40,7 @@ class PageContainer extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: Text(title),
-            // actions: actions,
+            actions: actions,
           ),
           body: child,
         ),
