@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:bookstore/event/signin_fail_event.dart';
+import 'package:bookstore/event/signin_success_event.dart';
 import 'package:bookstore/shared/validation.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:bookstore/base/base_bloc.dart';
@@ -86,14 +88,30 @@ class SignInBloc extends BaseBloc {
   }
 
   _signIn(SignInEvent event) {
-    _userRepo.signIn(event.phone, event.password).then(
-      (UserData user) {
-        print(user.displayName);
-        print(user.token);
-      },
-      onError: (e) {
-        print(e);
-      },
-    );
+    btnSignInSubjectSink.add(false);
+    loaddingSink.add(true);
+
+    Future.delayed(Duration(seconds: 6), () {
+      _userRepo.signIn(event.phone, event.password).then(
+        (UserData user) {
+          print(user.displayName);
+          print(user.token);
+          // Add event cho listener processStream
+          processSink.add(
+            SignInSuccessEvent(user: user),
+          );
+        },
+        onError: (e) {
+          print(e);
+          // Add event cho listener processStream
+          processSink.add(
+            SignInFailEvent(message: e.toString()),
+          );
+        },
+      );
+
+      btnSignInSubjectSink.add(true);
+      loaddingSink.add(false);
+    });
   }
 }

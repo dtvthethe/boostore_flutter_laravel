@@ -25,7 +25,7 @@ class UserRepo {
         }
         print(user.token);
       } else {
-        print(response.data['messages']);
+        completer.completeError(response.data['messages']);
       }
     } on DioError catch (e) {
       completer.completeError('Dio: Login fail.');
